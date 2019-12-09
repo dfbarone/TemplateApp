@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <!-- declare myenum attribute -->
+  <attr name="paneDisplayMode">
+    <enum name="Top" value="0" />
+    <enum name="Left" value="1" />
+    <enum name="LeftCompact" value="2" />
+    <enum name="LeftMinimal" value="3" />
+    <enum name="Auto" value="4" />
+  </attr>
+
+  <attr name="backButtonVisibility">
+    <enum name="visible" value="0" />
+    <enum name="invisible" value="4" />
+    <enum name="gone" value="8" />
+  </attr>
+
+  <!-- declare our custom widget to be styleable by these attributes -->
+  <declare-styleable name="NavigationView_Layout">
+    <attr name="paneDisplayMode" />
+    <attr name="backButtonVisibility" />
+    <attr name="compactModeThresholdWidth" format="integer" />
+    <attr name="expandedModeThresholdWidth" format="integer" />
+  </declare-styleable>
+
+</resources>
