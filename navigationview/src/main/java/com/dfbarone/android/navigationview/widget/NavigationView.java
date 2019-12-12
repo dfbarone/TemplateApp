@@ -21,7 +21,7 @@ public class NavigationView extends ConstraintLayout {
     }
 
     // Default Constants
-    private static final int COMPACT_MODE_WIDTH = 56;
+    private static final int COMPACT_MODE_WIDTH = 60;
     private static final int EXPANDED_MODE_WIDTH = COMPACT_MODE_WIDTH * 5;
     private static final int COMPACT_MODE_THRESHOLD_WIDTH = 480;
     private static final int EXPANDED_MODE_THRESHOLD_WIDTH = 840;
@@ -76,13 +76,14 @@ public class NavigationView extends ConstraintLayout {
                     int val = a.getInt(attr, 4);
                     setPaneDisplayMode(PaneDisplayMode.fromInt(val));
                 } else if (attr == styleable.NavigationView_Layout_compactModeThresholdWidth) {
-                    mCompactModeThreashholdWidth = a.getInt(attr, COMPACT_MODE_THRESHOLD_WIDTH);
+                    mCompactModeThreashholdWidth = (int)DisplayUtils.pxToDp(getContext(), a.getDimensionPixelSize(attr, COMPACT_MODE_THRESHOLD_WIDTH));
                 } else if (attr == styleable.NavigationView_Layout_expandedModeThresholdWidth) {
-                    mExpandedModeThreadholdWidth = a.getInt(attr, EXPANDED_MODE_THRESHOLD_WIDTH);
+                    mExpandedModeThreadholdWidth = (int)DisplayUtils.pxToDp(getContext(), a.getDimensionPixelSize(attr, EXPANDED_MODE_THRESHOLD_WIDTH));
                 } else if (attr == styleable.NavigationView_Layout_compactModeWidth) {
-                    mCompactModeWidth = a.getInt(attr, COMPACT_MODE_THRESHOLD_WIDTH);
+                    mCompactModeWidth = (int)DisplayUtils.pxToDp(getContext(), a.getDimensionPixelSize(attr, COMPACT_MODE_THRESHOLD_WIDTH));
+                    mExpandedModeWidth = mCompactModeWidth * 5;
                 } else if (attr == styleable.NavigationView_Layout_expandedModeWidth) {
-                    mExpandedModeWidth = a.getInt(attr, EXPANDED_MODE_THRESHOLD_WIDTH);
+                    mExpandedModeWidth = (int)DisplayUtils.pxToDp(getContext(), a.getDimensionPixelSize(attr, EXPANDED_MODE_THRESHOLD_WIDTH));
                 }
             }
 

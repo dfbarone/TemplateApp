@@ -19,10 +19,10 @@
   <!-- declare our custom widget to be styleable by these attributes -->
   <declare-styleable name="NavigationView_Layout">
     <attr name="paneDisplayMode" />
-    <attr name="compactModeThresholdWidth" format="integer" />
-    <attr name="expandedModeThresholdWidth" format="integer" />
-    <attr name="compactModeWidth" format="integer" />
-    <attr name="expandedModeWidth" format="integer" />
+    <attr name="compactModeThresholdWidth" format="dimension" />
+    <attr name="expandedModeThresholdWidth" format="dimension" />
+    <attr name="compactModeWidth" format="dimension" />
+    <attr name="expandedModeWidth" format="dimension" />
   </declare-styleable>
 
 </resources>
