@@ -1,20 +1,16 @@
-package com.example.dbarone.templateapp;
+package com.dfbarone.android.navigationview.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.IdRes;
-import android.support.constraint.ConstraintLayout;
-import android.text.TextUtils;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.Button;
-import com.example.dbarone.templateapp.R.styleable;
+import com.dfbarone.android.navigationview.DisplayUtils;
+import com.dfbarone.android.navigationview.R.styleable;
 
 public class NavigationView extends ConstraintLayout {
 
@@ -101,7 +97,7 @@ public class NavigationView extends ConstraintLayout {
         }
 
         //
-        setOnClickListener(new OnClickListener() {
+        setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 setActive(!isActive());
             }
@@ -111,18 +107,18 @@ public class NavigationView extends ConstraintLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int widthMode = View.MeasureSpec.getMode(widthMeasureSpec);
+        int heightMode = View.MeasureSpec.getMode(heightMeasureSpec);
 
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int widthSize = View.MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = View.MeasureSpec.getSize(heightMeasureSpec);
 
         int widthSizeInDp = (int) DisplayUtils.pxToDp(getContext(), widthSize);
         int heightSizeInDp = (int) DisplayUtils.pxToDp(getContext(), heightSize);
 
         int width;
         int height;
-        if (widthMode == MeasureSpec.EXACTLY) {
+        if (widthMode == View.MeasureSpec.EXACTLY) {
             Log.d(TAG, "w MeasureSpec.EXACTLY");
 
             // We may not be getting parent width/height. So we need to try to used cached information to determine height
@@ -134,11 +130,11 @@ public class NavigationView extends ConstraintLayout {
             width = widthSize;
 
             //Measure Height
-            if (heightMode == MeasureSpec.EXACTLY) {
+            if (heightMode == View.MeasureSpec.EXACTLY) {
                 Log.d(TAG, "h MeasureSpec.EXACTLY");
                 //Must be this size
                 height = heightSize;
-            } else if (heightMode == MeasureSpec.AT_MOST) {
+            } else if (heightMode == View.MeasureSpec.AT_MOST) {
                 Log.d(TAG, "h MeasureSpec.AT_MOST");
                 //Can't be bigger than...
                 height = newSize != null ? Math.min(newSize.height(), heightSize) : heightSize;
@@ -147,7 +143,7 @@ public class NavigationView extends ConstraintLayout {
                 //Be whatever you want
                 height = newSize != null ? newSize.height() : heightSize;
             }
-        } else if (widthMode == MeasureSpec.AT_MOST) {
+        } else if (widthMode == View.MeasureSpec.AT_MOST) {
             Log.d(TAG, "w MeasureSpec.AT_MOST");
 
             mLastMeasurePaneDisplayMode = calculatePaneDisplayMode(widthSizeInDp, heightSizeInDp);
@@ -159,11 +155,11 @@ public class NavigationView extends ConstraintLayout {
             width = Math.min(newSize.width(), widthSize);
 
             //Measure Height
-            if (heightMode == MeasureSpec.EXACTLY) {
+            if (heightMode == View.MeasureSpec.EXACTLY) {
                 Log.d(TAG, "h MeasureSpec.EXACTLY");
                 //Must be this size
                 height = heightSize;
-            } else if (heightMode == MeasureSpec.AT_MOST) {
+            } else if (heightMode == View.MeasureSpec.AT_MOST) {
                 Log.d(TAG, "h MeasureSpec.AT_MOST");
                 //Can't be bigger than...
                 height = Math.min(newSize.height(), heightSize);
@@ -184,11 +180,11 @@ public class NavigationView extends ConstraintLayout {
             width = newSize.width();
 
             //Measure Height
-            if (heightMode == MeasureSpec.EXACTLY) {
+            if (heightMode == View.MeasureSpec.EXACTLY) {
                 Log.d(TAG, "h MeasureSpec.EXACTLY");
                 //Must be this size
                 height = heightSize;
-            } else if (heightMode == MeasureSpec.AT_MOST) {
+            } else if (heightMode == View.MeasureSpec.AT_MOST) {
                 Log.d(TAG, "h MeasureSpec.AT_MOST");
                 //Can't be bigger than...
                 height = Math.min(newSize.height(), heightSize);
@@ -199,8 +195,8 @@ public class NavigationView extends ConstraintLayout {
             }
         }
 
-        super.onMeasure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY));
 
         mLastMeasureWidth = width;
         mLastMeasureHeight = height;
@@ -249,12 +245,7 @@ public class NavigationView extends ConstraintLayout {
                         : PaneDisplayMode.LEFTMINIMAL;
             }
         }
-        Log.d(TAG, "calculatePaneDisplayMode "
-                + state.toString()
-                + " "
-                + parentWidthInDp
-                + " "
-                + parentHeightInDp);
+        Log.d(TAG, "calculatePaneDisplayMode " + state.toString() + " " + parentWidthInDp + " " + parentHeightInDp);
         return state;
     }
 

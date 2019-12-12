@@ -1,4 +1,4 @@
-package com.example.dbarone.templateapp;
+package com.dfbarone.android.navigationview;
 
 import android.content.Context;
 
